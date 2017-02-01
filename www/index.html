@@ -50,6 +50,9 @@
                 </div>
                 <ion-content class="has-subheader">
                 
+                <ion-refresher on-refresh="doRefresh()">
+                </ion-refresher>
+                
                 <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
                 
                 <ion-item ng-class="{'star': item.star}" 
