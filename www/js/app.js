@@ -7,14 +7,10 @@ angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
-   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-// Don't remove this line unless you know what you are doing. It stops the viewport
-      // from snapping when text inputs are focused. Ionic handles this internally for
-      // a much nicer keyboard experience.
-      cordova.plugins.Keyboard.disableScroll(true);
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
@@ -23,57 +19,58 @@ angular.module('starter', ['ionic'])
 })
 
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-  .state('tabs', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
-  .state('tabs.home', {
-    url: '/home',
-    views:{
-      'home-tab' : {
-        templateUrl: 'templates/home.html',
-      }
-    }
-  })
+    .state('tabs', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
 
-  .state('tabs.list', {
-    url: '/list',
-    views:{
-      'list-tab' : {
-        templateUrl: 'templates/list.html',
-        controller: 'ListController'
+    .state('tabs.home', {
+      url: '/home',
+      views: {
+        'home-tab' : {
+          templateUrl: 'templates/home.html'
+        }
       }
-    }
-  })
+    })
 
-.state('tabs.detail', {
-    url: '/list/:aId',
-    views:{
-      'list-tab' : {
-        templateUrl: 'templates/detail.html',
-        controller: 'ListController'
+    .state('tabs.list', {
+      url: '/list',
+      views: {
+        'list-tab' : {
+          templateUrl: 'templates/list.html',
+          controller: 'ListController'
+        }
       }
-    }
-  })
+    })
 
-.state('tabs.calendar', {
-    url: '/calendar',
-    views:{
-      'calendar-tab' : {
-        templateUrl: 'templates/calendar.html',
-        controller: 'CalendarController'
+    .state('tabs.detail', {
+      url: '/list/:aId',
+      views: {
+        'list-tab' : {
+          templateUrl: 'templates/detail.html',
+          controller: 'ListController'
+        }
       }
-    }
-  })
+    })
 
-    $urlRouterProvider.otherwise('/tab/home');
+    .state('tabs.calendar', {
+      url: '/calendar',
+      views: {
+        'calendar-tab' : {
+          templateUrl: 'templates/calendar.html',
+          controller: 'CalendarController'
+        }
+      }
+    })
+
+
+  $urlRouterProvider.otherwise('/tab/home');
 })
 
-.controller('CalendarController', ['$scope', 
-'$http', '$state',
+.controller('CalendarController', ['$scope', '$http', '$state',
     function($scope, $http, $state) {
     $http.get('js/data.json').success(function(data) {
       $scope.calendar = data.calendar;
