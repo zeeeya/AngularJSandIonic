@@ -24,9 +24,13 @@ angular.module('starter', ['ionic'])
 
 .controller('ListController', ['$scope', '$http', function($scope, $http){
   $http.get('js/data.json').success(function(data){
-    $scope.artists = data;
+    $scope.artists = data.artists;
 $scope.onItemDelete = function(item) {
   $sope.artists.splice($scope.artists.indexOf(item), l)
+}
+
+$scope.toggleStar = function(item){
+  item.star = !item.star;
 }
 
     $scope.moveItem = function(item, fromIndex, toIndex){
